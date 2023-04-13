@@ -6,8 +6,7 @@
   "scripts": {
     "test": "test",
     "lint": "eslint . --ext .ts",
-    "format": "prettier --write '**/*.ts'",
-    "prepare": "husky install"
+    "format": "prettier --write '**/*.ts'"
   },
   "repository": {
     "type": "git",
@@ -18,12 +17,14 @@
   ],
   "author": "Rodrigo Mata",
   "license": "MIT",
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
   "lint-staged": {
     "*.ts": [
       "npm run lint",
       "npm run format",
-      "git add",
-      "eslint --cache --fix"
+      "git add"
     ]
   },
   "bugs": {
@@ -38,7 +39,6 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "fuse.js": "^6.6.2",
-    "husky": "^4.3.8",
     "lint-staged": "^13.2.1",
     "prettier": "^2.8.7",
     "ts-node": "^10.9.1",

@@ -1,5 +1,0 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-# Workaround solution to Webstorm and PHPStorm not staging files
-git update-index -g
