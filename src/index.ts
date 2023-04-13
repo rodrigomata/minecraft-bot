@@ -11,7 +11,7 @@ client.on("ready", () => {
 })
 
 // When bot receives a message
-client.on('messageCreate', message => {
+client.on("messageCreate", message => {
   if (message.content === '!ping') {
     message.reply('Pong!')
   }

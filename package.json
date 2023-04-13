@@ -17,7 +17,7 @@
   ],
   "author": "Rodrigo Mata",
   "license": "MIT",
-  "gitHooks": {
+  "simple-git-hooks": {
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
@@ -42,6 +42,7 @@
     "lint-staged": "^13.2.1",
     "npm": "^9.6.4",
     "prettier": "^2.8.7",
+    "simple-git-hooks": "^2.8.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   },
