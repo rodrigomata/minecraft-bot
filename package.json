@@ -18,7 +18,7 @@
   ],
   "author": "Rodrigo Mata",
   "license": "MIT",
-  "lint-stage": {
+  "lint-staged": {
     "*.ts": [
       "npm run lint",
       "npm run format",
