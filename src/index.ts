@@ -6,7 +6,7 @@ const client = new Client({
 })
 
 // When bot is ready
-client.on('ready', () => {
+client.on("ready", () => {
   console.log("Bot is ready")
 })
 
