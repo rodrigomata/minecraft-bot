@@ -1,4 +1,4 @@
-import { Client, IntentsBitField } from 'discord.js'
+import { Client, IntentsBitField } from "discord.js"
 
 // Initialize discord bot
 const client = new Client({ intents: [IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildMessages] })
