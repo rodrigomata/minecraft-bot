@@ -4,7 +4,7 @@ import { Client, IntentsBitField } from 'discord.js'
 const client = new Client({ intents: [IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildMessages] })
 
 // When bot is ready
-client.on('ready', () => {
+client.on("ready", () => {
   console.log('Bot is ready')
 })
 
