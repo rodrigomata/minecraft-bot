@@ -6,12 +6,12 @@ const client = new Client({
 })
 
 // When bot is ready
-client.on("ready", () => {
-  console.log("Bot is ready")
+client.on('ready', () => {
+  console.log('Bot is ready')
 })
 
 // When bot receives a message
-client.on("messageCreate", message => {
+client.on('messageCreate', message => {
   if (message.content === '!ping') {
     message.reply('Pong!')
   }

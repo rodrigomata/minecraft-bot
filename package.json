@@ -6,7 +6,8 @@
   "scripts": {
     "test": "test",
     "lint": "eslint . --ext .ts",
-    "format": "prettier --write '**/*.ts'"
+    "format": "prettier --write '**/*.ts'",
+    "postinstall": "npx simple-git-hooks"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,7 @@
   "author": "Rodrigo Mata",
   "license": "MIT",
   "simple-git-hooks": {
-    "pre-commit": "lint-staged"
+    "pre-commit": "npx lint-staged"
   },
   "lint-staged": {
     "*.ts": [
