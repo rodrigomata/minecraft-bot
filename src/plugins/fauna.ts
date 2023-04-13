@@ -1,4 +1,4 @@
-import { Client as FaunaClient, query as q } from 'faunadb'
+import { Client as FaunaClient } from 'faunadb'
 
 const { FAUNA_DB_KEY = '' } = process.env
 
