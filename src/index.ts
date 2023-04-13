@@ -56,7 +56,10 @@ async function findAction(interaction: ChatInputCommandInteraction) {
   const query = options.getString('query', true)
 
   const locations = await faunaClient.query(
-    q.Map(q.Paginate(q.Match(q.Index('all_locations'))), q.Lambda('location', q.Get(q.Var('location')))),
+    q.Map(
+      q.Paginate(q.Match(q.Index('all_locations'))),
+      q.Lambda('location', q.Get(q.Var('location'))),
+    ),
   )
 
   const fuse = createFuse(locations as any)
