@@ -5,7 +5,7 @@ const client = new Client({ intents: [IntentsBitField.Flags.Guilds, IntentsBitFi
 
 // When bot is ready
 client.on("ready", () => {
-  console.log('Bot is ready')
+  console.log("Bot is ready")
 })
 
 // When bot receives a message
