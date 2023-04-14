@@ -9,7 +9,7 @@ provider:
   timeout: 10
   versionFunctions: false
   environment:
-    GUILD_ID: 1234567890
+    GUILD_ID: 408081312256098305
     ALGOLIA_INDEX_NAME: coordinates_index
 
 functions:
