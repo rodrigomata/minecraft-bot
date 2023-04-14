@@ -6,6 +6,8 @@ import errorLogger from '@middy/error-logger'
 import { verifyDiscordEvent } from './plugins/discord'
 import { algoliaIndex } from './plugins/algolia'
 
+const { ALLOWED_CHANNEL = '1095847489002815489' } = process.env
+
 const lambdaHandler = async (event: APIGatewayProxyEvent, _context: Context) => {
   const isValid = verifyDiscordEvent(event)
   const body = JSON.parse(event.body || '{}')
@@ -15,6 +17,10 @@ const lambdaHandler = async (event: APIGatewayProxyEvent, _context: Context) => 
 
   // :: For ping event
   if (body.type === 1) return { statusCode: 200, body: JSON.stringify({ type: 1 }) }
+
+  // :: For non-allowed channel
+  if (body.data.channel_id !== ALLOWED_CHANNEL)
+    return { statusCode: 200, body: 'Channel not allowed' }
 
   const interaction = body.data.name as Interaction
   const data: APIApplicationCommand = body.data
