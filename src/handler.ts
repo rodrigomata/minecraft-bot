@@ -19,32 +19,36 @@ const lambdaHandler = async (event: APIGatewayProxyEvent, _context: Context) => 
   if (body.type === 1) return { statusCode: 200, body: JSON.stringify({ type: 1 }) }
 
   // :: For non-allowed channel
-  if (body.data.channel_id !== ALLOWED_CHANNEL)
-    return { statusCode: 200, body: 'Channel not allowed' }
+  if (body.channel_id !== ALLOWED_CHANNEL) return { statusCode: 403, body: 'Channel not allowed' }
 
   const interaction = body.data.name as Interaction
   const data: APIApplicationCommand = body.data
 
   switch (interaction) {
     case 'register': {
+      const description = findValue(data, 'description')
       const item = {
         objectID: new Date().getTime().toString(),
-        description: findValue(data, 'description'),
+        description,
         x: findValue(data, 'x'),
-        z: findValue(data, 'Z'),
+        z: findValue(data, 'z'),
       }
       await algoliaIndex.saveObject(item)
       return {
         statusCode: 200,
-        body: JSON.stringify({ type: 4, data: { content: 'Registered!' } }),
+        body: JSON.stringify({ type: 4, data: { content: `Se registró **${description}**!` } }),
       }
     }
     case 'find': {
       const query = findValue(data, 'query')
-      const results = await algoliaIndex.search(query)
+      const results = await algoliaIndex.search(query, { hitsPerPage: 5 })
+      let resultContent = 'Resultados:\n'
+      results.hits.map((result: any) => {
+        resultContent += `* ${result.description} | Coordenadas x: ${result.x}, z: ${result.z}\n`
+      })
       return {
         statusCode: 200,
-        body: JSON.stringify({ type: 4, data: { content: JSON.stringify(results) } }),
+        body: JSON.stringify({ type: 4, data: { content: resultContent } }),
       }
     }
     default:
@@ -52,7 +56,7 @@ const lambdaHandler = async (event: APIGatewayProxyEvent, _context: Context) => 
   }
 }
 
-const handler = middy().use(errorLogger()).handler(lambdaHandler)
+const handler = middy().handler(lambdaHandler).use(errorLogger())
 export default handler
 
 function findValue(data: APIApplicationCommand, value: string) {
