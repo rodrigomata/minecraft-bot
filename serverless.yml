@@ -8,16 +8,9 @@ provider:
   memorySize: 128
   timeout: 10
   versionFunctions: false
-  iam:
-    role:
-      statements:
-        - Effect: Allow
-          Action:
-            - dynamodb:Query
-            - dynamodb:GetItem
-          Resource: arn:aws:dynamodb:us-east-1:*:table/*
   environment:
     GUILD_ID: 1234567890
+    ALGOLIA_INDEX_NAME: coordinates_index
 
 functions:
   main:

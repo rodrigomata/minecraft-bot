@@ -7,6 +7,7 @@
     "test": "test",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write '**/*.ts'",
+    "deploy": "sls deploy",
     "register:commands": "ts-node src/commands/register.ts",
     "postinstall": "npx simple-git-hooks"
   },
