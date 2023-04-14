@@ -2,11 +2,14 @@ import { REST } from '@discordjs/rest'
 import { Routes, APIApplicationCommand } from 'discord-api-types/v9'
 import { SlashCommandBuilder } from '@discordjs/builders'
 import * as fs from 'fs'
+import * as path from 'path'
 
 const { DISCORD_BOT_TOKEN = '', DISCORD_BOT_CLIENT_ID = '', GUILD_ID = '' } = process.env
 
 // :: Load the commands from the commands.json file
-const commandsData = JSON.parse(fs.readFileSync('./interactions.json', 'utf8'))
+const commandsData = JSON.parse(
+  fs.readFileSync(path.join(__dirname, './interactions.json'), 'utf8'),
+)
 
 // :: Convert the commands data to Discord API format
 const commands = commandsData.map((commandData: APIApplicationCommand) => {
