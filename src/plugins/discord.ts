@@ -1,66 +1,16 @@
-import { Client, IntentsBitField } from 'discord.js'
+import { APIGatewayProxyEvent } from 'aws-lambda'
+import nacl from 'tweetnacl'
 
-const { DISCORD_BOT_TOKEN = '', GUILD_ID = '' } = process.env
+const { DISCORD_BOT_PUBLIC_KEY = '' } = process.env
 
-export default class DiscordClient {
-  private client: Client
+export const verifyDiscordEvent = (event: APIGatewayProxyEvent) => {
+  const signature = event.headers['X-Signature-Ed25519']
+  const timestamp = event.headers['X-Signature-Timestamp']
+  const body = event.body
 
-  constructor() {
-    this.client = new Client({
-      intents: [IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildMessages],
-    })
-  }
-
-  public async registerCommands() {
-    this.client.once('ready', async () => {
-      console.log('Bot is ready')
-
-      await this.client.guilds.cache.get(GUILD_ID)?.commands.set([
-        {
-          name: 'register',
-          description: 'Register a new location',
-          options: [
-            {
-              name: 'x',
-              type: 4,
-              description: 'X coordinate of the location',
-              required: true,
-            },
-            {
-              name: 'z',
-              type: 4,
-              description: 'Z coordinate of the location',
-              required: true,
-            },
-            {
-              name: 'description',
-              type: 3,
-              description: 'Description of the location',
-              required: true,
-            },
-          ],
-        },
-        {
-          name: 'find',
-          description: 'Find a location based on a search query',
-          options: [
-            {
-              name: 'query',
-              type: 3,
-              description: 'The search query',
-              required: true,
-            },
-          ],
-        },
-      ])
-    })
-  }
-
-  public getClient() {
-    return this.client
-  }
-
-  public loginClient() {
-    this.client.login(DISCORD_BOT_TOKEN)
-  }
+  return nacl.sign.detached.verify(
+    Buffer.from(`${timestamp}${body}`),
+    Buffer.from(signature as string, 'hex'),
+    Buffer.from(DISCORD_BOT_PUBLIC_KEY, 'hex'),
+  )
 }

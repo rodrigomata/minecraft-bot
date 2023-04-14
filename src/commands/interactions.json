@@ -1,0 +1,38 @@
+[
+  {
+    "name": "register",
+    "description": "Register a new item with coordinates and description",
+    "options": [
+      {
+        "name": "x",
+        "description": "The X coordinate",
+        "type": 4,
+        "required": true
+      },
+      {
+        "name": "z",
+        "description": "The Z coordinate",
+        "type": 4,
+        "required": true
+      },
+      {
+        "name": "description",
+        "description": "The description of the item",
+        "type": 3,
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "find",
+    "description": "Find an item based on a text entry",
+    "options": [
+      {
+        "name": "query",
+        "description": "The text entry for searching",
+        "type": 3,
+        "required": true
+      }
+    ]
+  }
+]
