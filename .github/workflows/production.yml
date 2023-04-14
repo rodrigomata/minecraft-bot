@@ -3,7 +3,7 @@ name: Production
 on:
   push:
     branches:
-      - master
+      - main
 
 env:
   DISCORD_BOT_PUBLIC_KEY: ${{ secrets.DISCORD_BOT_PUBLIC_KEY }}

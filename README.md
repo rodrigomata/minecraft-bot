@@ -1,3 +1,5 @@
+[![Production](https://github.com/rodrigomata/minecraft-bot/actions/workflows/production.yml/badge.svg?branch=main)](https://github.com/rodrigomata/minecraft-bot/actions/workflows/production.yml)
+
 # Maincraft discord bot for noobs
 This bot registers interesting locations in order to be able to search for them later.
 
