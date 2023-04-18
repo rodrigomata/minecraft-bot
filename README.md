@@ -3,6 +3,13 @@
 # Maincraft discord bot for noobs
 This bot registers interesting locations in order to be able to search for them later.
 
+## Stack
+The bot is built on a AWS serverless application so it is simple and cost effective.
+
+The different components of the architecture are AWS API Gateway + AWS Lambda + Algolia. We use Algolia as the datasource to be able to do fuzzy searchs. The lambda is built on Node.js v18 and in Typescript. We also leverage usage of the npm package.json hooks to update the different command interactions available on every deployment.
+
+In order to keep a standardized codebase, there are rules added to automatically lint and format the code on commit.
+
 ## General Setup
 1. Run `cp .env.sample .env`
 2. Replace values depending on the action needed
