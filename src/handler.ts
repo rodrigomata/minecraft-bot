@@ -31,6 +31,7 @@ const lambdaHandler = async (event: APIGatewayProxyEvent, _context: Context) => 
         objectID: new Date().getTime().toString(),
         description,
         x: findValue(data, 'x'),
+        y: findValue(data, 'y'),
         z: findValue(data, 'z'),
       }
       await algoliaIndex.saveObject(item)
@@ -44,7 +45,7 @@ const lambdaHandler = async (event: APIGatewayProxyEvent, _context: Context) => 
       const results = await algoliaIndex.search(query, { hitsPerPage: 5 })
       let resultContent = 'Resultados:\n'
       results.hits.map((result: any) => {
-        resultContent += `* ${result.description} | Coordenadas x: ${result.x}, z: ${result.z}\n`
+        resultContent += `* ${result.description} | Coordenadas x: ${result.x}, y: ${result.y}, z: ${result.z}\n`
       })
       return {
         statusCode: 200,

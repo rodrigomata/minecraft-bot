@@ -10,6 +10,12 @@
         "required": true
       },
       {
+        "name": "y",
+        "description": "The Y coordinate",
+        "type": 4,
+        "required": true
+      },
+      {
         "name": "z",
         "description": "The Z coordinate",
         "type": 4,
