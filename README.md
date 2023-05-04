@@ -41,9 +41,9 @@ Currently this bot should register new locations and be able to search through t
 ### Registering a new location in Discord
 Use `/register` command with the following format:
 ```bash
-/register <x> <z> <description>
+/register <x> <y> <z> <description>
 # Example
-/register 10 10 Horses
+/register 10 10 10 Horses
 ```
 
 ### Find a registered place
